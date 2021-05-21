@@ -1,0 +1,16 @@
+.root__page-container {
+    max-width: 880px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #000;
+    margin: 0 auto;
+    padding: 0;
+}
+
+@media screen and (max-width: 320px) {
+    .root__page-container {
+        max-width: 320px;
+    }
+}

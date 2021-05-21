@@ -1,0 +1,19 @@
+@import url(__vector/header__vector.css);
+.header {
+    display: flex;
+    flex-direction: column;
+    max-width: 880px;
+    min-height: 74px;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(54, 54, 54, .7);
+    margin: 45px 0 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 320px) {
+    .header {
+        max-width: 320px;
+        min-height: 56px;
+        margin: 28px 0 auto;
+    }
+}
