@@ -44,6 +44,7 @@ function Main({ handleCardClick, onEditAvatar, onEditProfile, onAddPlace, card }
                 likes={card.likes}
                 key={card._id}
                 handleCardClick={handleCardClick}
+                handleTrashClick={handleTrashClick}
               />
             )
           })}
