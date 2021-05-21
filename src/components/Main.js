@@ -2,7 +2,7 @@ import React from 'react';
 import editButton from '../images/edit-button.svg';
 import {api} from '../utils/api.js';
 import Card from './Card.js';
-function Main({ handleCardClick, onEditAvatar, onEditProfile, onAddPlace, card }) {
+function Main({ handleTrashClick, handleCardClick, onEditAvatar, onEditProfile, onAddPlace, card }) {
 
   const [userName, setUserName] = React.useState("");
   const [userOccupation, setUserOccupation] = React.useState("");
