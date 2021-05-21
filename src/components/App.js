@@ -8,47 +8,57 @@ import '../index.css';
 
 function App() {
 
-  const [isEditProfileOpen, setIsEditProfileOpen] = React.useState(false);
-  const [isAddPlacePopupOpn, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isConfirmPopupOpen, setIsConfirmPopupOpen] = React.useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
 
   function handleEditProfileClick() {
-    setIsEditProfileOpen(true);
+    setIsEditProfilePopupOpen(true);
   }
+
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
+
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
+
+  function handleTrashClick() {
+    setIsConfirmPopupOpen(true);
+  }
+
   function handleCardClick(card) {
     setSelectedCard(card);
-    setIsImagePopupOpen(true)
-  }
+    setIsImagePopupOpen(true);
+    }
+
   function closeAllPopups() {
-    setIsEditProfileOpen(false);
+    setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setIsConfirmPopupOpen(false);
     setIsImagePopupOpen(false);
   }
 
   return (
-    <>
   <div className="root__page-container">
     <Header />
     <Main 
       onEditAvatar={handleEditAvatarClick}
       onEditProfile={handleEditProfileClick}
       onAddPlace={handleAddPlaceClick}
+      handleTrashClick={handleTrashClick}
       handleCardClick={handleCardClick}
     />
     <PopupWithForm
       name="add"
       title="New Place"
       submitButton="Create"
-      isOpen={isAddPlacePopupOpn}
+      isOpen={isAddPlacePopupOpen}
       onClose={closeAllPopups}
     > <fieldset className="form__input-container">
         <input className="form__item form__item_input_title" id="title" required minLength={1} maxLength={30} name="name" placeholder="Title" type="text" />
@@ -74,7 +84,7 @@ function App() {
       name="edit"
       title="Edit Profile"
       submitButton="Save"
-      isOpen={isEditProfileOpen}
+      isOpen={isEditProfilePopupOpen}
       onClose={closeAllPopups}
     >
       <fieldset className="form__input-container">
@@ -89,28 +99,17 @@ function App() {
       name="confirm"
       title="Are you sure?"
       submitButton="Yes"
-    >
-    </PopupWithForm>
+      isOpen={isConfirmPopupOpen}
+      onClose={closeAllPopups}
+    />
+
     <PopupImage
       card={selectedCard}
       isOpen={isImagePopupOpen}
       onClose={closeAllPopups}
     />
-{/*     <div className="popup popup_type_confirm" id="confirm-popup">
-      <div className="popup__container">
-        <button className="popup__close-button popup__close-button_type_confirm" aria-label="Close" type="button" />
-        <form className="form form_confirm" name="Are You Sure?">
-          <fieldset className="form__input-container">
-            <h2 className="form__label">Are you sure?</h2>
-            <button className="form__submit" id="confirm-delete" value="Yes" type="submit">Yes</button>
-          </fieldset>
-        </form>
-      </div>
-    </div> */}
-    <template className="element-template" />
     <Footer />
   </div>
-</>
   );
 }
 
