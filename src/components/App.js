@@ -42,6 +42,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsConfirmPopupOpen(false);
     setIsImagePopupOpen(false);
+    setSelectedCard({});
   }
 
   return (

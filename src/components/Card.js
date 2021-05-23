@@ -1,6 +1,6 @@
 function Card({card, selectedCard, handleCardClick, handleTrashClick}) {
 
-     function handleClick() {
+    function handleClick() {
         handleCardClick(card);
       }  
     function handleTrash() {

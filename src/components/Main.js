@@ -2,23 +2,29 @@ import React from 'react';
 import editButton from '../images/edit-button.svg';
 import {api} from '../utils/api.js';
 import Card from './Card.js';
+
 function Main({ handleTrashClick, handleCardClick, onEditAvatar, onEditProfile, onAddPlace, card }) {
 
   const [userName, setUserName] = React.useState("");
   const [userOccupation, setUserOccupation] = React.useState("");
   const [userAvatar, setUserAvatar] = React.useState("");
   const [cards, setCards] = React.useState([]);
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
   React.useEffect(() => {
+    if(!isLoaded) {
+    setIsLoaded(true);
     api.getUserInfo().then((result) => {
       setUserName(result.name);
       setUserOccupation(result.about);
       setUserAvatar(result.avatar);
     })
+    .catch((err) => console.log(err)); 
     api.getInitialCards().then((items) => {
       setCards(items);
     })
-  });
+    .catch((err) => console.log(err));
+  }}, [isLoaded]);
 
   return (
     <main className="content">
