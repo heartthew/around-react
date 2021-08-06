@@ -4,7 +4,7 @@
     margin: 17px 0 0 18px;
     padding: 0;
     transition: opacity .17s ease-in;
-    background: url(../../../../images/edit-button.svg);
+    background: url(../../../images/edit-button.svg);
     background-repeat: no-repeat;
     background-position: center;
     border: hidden;

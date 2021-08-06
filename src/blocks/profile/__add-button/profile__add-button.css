@@ -9,7 +9,7 @@
     border-radius: 2px;
     object-fit: none;
     transition: opacity .13s ease-in;
-    background: url(../../../../images/add-button.svg);
+    background: url(../../../images/add-button.svg);
     background-repeat: no-repeat;
     background-position: center;
 }

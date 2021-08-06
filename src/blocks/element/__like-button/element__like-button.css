@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     border: hidden;
-    background: url(../../../../images/like-button.svg);
+    background: url(../../../images/like-button.svg);
     background-repeat: no-repeat;
     background-position: center;
     transition: opacity .24s ease-in;
