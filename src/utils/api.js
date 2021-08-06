@@ -11,18 +11,18 @@ class Api {
         return Promise.reject(`Error: ${res.status}`);
     }
 
-    getInitialCards() {
+    getCards() {
         return fetch(`${this._baseUrl}/cards`, {
                 headers: this._headers
             })
-            .then(res => this._checkResponse(res))
+            .then(this._checkResponse)
     }
 
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
                 headers: this._headers
             })
-            .then(res => this._checkResponse(res))
+            .then(this._checkResponse)
     }
 
     setUserInfo({ name, about }) {
@@ -34,7 +34,7 @@ class Api {
                     about
                 })
             })
-            .then(res => this._checkResponse(res))
+            .then(this._checkResponse)
 
     }
 
@@ -46,7 +46,7 @@ class Api {
                     avatar
                 })
             })
-            .then(res => this._checkResponse(res))
+            .then(this._checkResponse)
     }
 
     addCard({ name, link }) {
@@ -58,7 +58,7 @@ class Api {
                     link
                 })
             })
-            .then(res => this._checkResponse(res))
+            .then(this._checkResponse)
     }
 
     deleteCard(cardId) {
@@ -66,7 +66,7 @@ class Api {
                 headers: this._headers,
                 method: "DELETE",
             })
-            .then(res => this._checkResponse(res))
+            .then(this._checkResponse)
     }
 
     addLike(cardId) {
@@ -74,7 +74,7 @@ class Api {
                 method: "PUT",
                 headers: this._headers
             })
-            .then(res => this._checkResponse(res))
+            .then(this._checkResponse)
     }
 
     removeLike(cardId) {
@@ -82,13 +82,15 @@ class Api {
                 method: "DELETE",
                 headers: this._headers
             })
-            .then(res => this._checkResponse(res))
+            .then(this._checkResponse)
     }
 }
 
-export const api = new Api({
+const api = new Api({
     baseUrl: "https://around.nomoreparties.co/v1/group-7",
     headers: {
       authorization: "cd1cfdf8-4aa7-46c5-9465-44c7c15c403b",
       "Content-Type": "application/json"
     }});
+
+    export default api;

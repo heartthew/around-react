@@ -1,63 +1,44 @@
 import React from 'react';
 import editButton from '../images/edit-button.svg';
-import {api} from '../utils/api.js';
 import Card from './Card.js';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Main({ handleTrashClick, handleCardClick, onEditAvatar, onEditProfile, onAddPlace, card }) {
+function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike, onCardTrash }) {
 
-  const [userName, setUserName] = React.useState("");
-  const [userOccupation, setUserOccupation] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
-  const [cards, setCards] = React.useState([]);
-  const [isLoaded, setIsLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    if(!isLoaded) {
-    setIsLoaded(true);
-    api.getUserInfo().then((result) => {
-      setUserName(result.name);
-      setUserOccupation(result.about);
-      setUserAvatar(result.avatar);
-    })
-    .catch((err) => console.log(err)); 
-    api.getInitialCards().then((items) => {
-      setCards(items);
-    })
-    .catch((err) => console.log(err));
-  }}, [isLoaded]);
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main className="content">
       <section className="profile">
-        <img className="profile__avatar" src={userAvatar} alt="Avatar" onClick={onEditAvatar} />
-        <img className="profile__avatar-button" src={editButton} alt="Edit Avatar Button" />
+        <img className="profile__avatar" src={currentUser.avatar} alt="Avatar" />
+        <img className="profile__avatar-button" src={editButton} alt="Edit Avatar Button" onClick={onEditAvatar} />
         <div className="profile__info">
           <div className="profile__container">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{currentUser.name}</h1>
             <button className="profile__edit-button" aria-label="Edit" type="button" onClick={onEditProfile} />
           </div>
-          <h2 className="profile__occupation">{userOccupation}</h2>
+          <h2 className="profile__occupation">{currentUser.about}</h2>
         </div>
         <button className="profile__add-button" aria-label="Add" type="button" onClick={onAddPlace} />
       </section>
       <section className="elements">
-          {cards.map(card => {
-            return (
-              <Card
-                card={card}
-                link={card.link}
-                name={card.name}
-                likes={card.likes}
-                key={card._id}
-                handleCardClick={handleCardClick}
-                handleTrashClick={handleTrashClick}
-              />
-            )
-          })}
+        {cards.map(card => {
+          return (
+            <Card
+              card={card}
+              link={card.link}
+              name={card.name}
+              likes={card.likes}
+              key={card._id}
+              onCardClick={onCardClick}
+              onCardLike={onCardLike}
+              onCardTrash={onCardTrash}
+            />
+          )
+        })}
       </section>
     </main>
   );
 }
 
 export default Main;
-  
