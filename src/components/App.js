@@ -56,7 +56,7 @@ function App() {
   function handleAddPlaceSubmit({ name, link }) {
     api.addCard({ name, link })
       .then((newCard) => {
-        setCards([newCard, ...cards])
+        setCards(cards => ([newCard, ...cards]))
       })
       .then(() => {
         setIsAddPlacePopupOpen(false)
@@ -89,8 +89,7 @@ function App() {
   function handleCardTrash(card) {
     api.deleteCard(card._id)
       .then(() => {
-        const deleteCard = cards.filter((c) => c._id !== card._id);
-        setCards(deleteCard)
+        setCards(cards => cards.filter((c) => c._id !== card._id))
       })
       .catch((err) => {
         console.log(err)

@@ -4,7 +4,7 @@ function ImagePopup({card, onClose, isOpen}) {
           <div className="popup__container">
             <button className="popup__close-button popup__close-button_type_full" type="button" aria-label="close" onClick={onClose} />
             <figure className="popup__figure">
-              <img className="popup__image" src={card.link} alt="missing" />
+              <img className="popup__image" src={card.link} alt={card.name} />
               <figcaption className="popup__title">{card.name}</figcaption>
             </figure>
           </div>

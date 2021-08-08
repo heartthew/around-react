@@ -25,7 +25,7 @@ function Card({ card, onCardClick, onCardTrash, onCardLike }) {
   return (
     <div className="element">
       <button className={cardTrashClassName} type="button" aria-label="Trash" onClick={handleTrash}></button>
-      <img className="element__image" src={card.link} alt="missing" onClick={handleClick} />
+      <img className="element__image" src={card.link} alt={card.name} onClick={handleClick} />
       <div className="element__label">
         <h2 className="element__title">{card.name}</h2>
         <div className="element__likes">
